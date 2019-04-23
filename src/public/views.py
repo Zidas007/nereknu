@@ -48,5 +48,12 @@ def mojdat():
 
 @blueprint.route('/net', methods=['GET','POST'])
 def francek():
-    return render_template("public/net.tmpl",datain=Data.poslednich10minut("NETIN"),dataout=Data.poslednich10minut("NETOUT"))
+    datainout=[]
+    datain = Data.poslednich10minut("NETIN")
+    lasthodnota=datain[0]
+    for item in datain:
+        datainout.append((item[0]-lasthodnota[0])/10000)
+        lasthodnota = item
+    print datainout
+    return render_template("public/net.tmpl",datain = datainout,dataout=Data.poslednich10minut("NETOUT"))
 

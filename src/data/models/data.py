@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from sqlalchemy import func
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Boolean, Integer, String, DateTime,Float
@@ -24,6 +25,9 @@ class Data(CRUDModel):
     def poslednich10minut(typ):
         from datetime import datetime, timedelta
         now=datetime.now()
-        now_minus_10=now - timedelta(minutes=10)
-        data= db.session.query(Data).filter(Data.cas > now_minus_10).filter(Data.typ == typ).all()
+        now_minus_10=now - timedelta(minutes=100)
+        minimum=db.session.query(func.min(Data.hodnota)).filter(Data.cas > now_minus_10).filter(Data.typ == typ).first()
+        # print minimum[0]
+        data= list(db.session.query(Data.hodnota ).filter(Data.cas > now_minus_10).filter(Data.typ == typ).all())
+        print data
         return data

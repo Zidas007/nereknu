@@ -29,7 +29,7 @@
           bezierCurve : false,
           data :[
           {% for item in datain %}
-            {{ item['hodnota'] }},
+            {{ item }},
           {% endfor %}
       ]
           },{
@@ -42,7 +42,7 @@
           bezierCurve : false,
           data :[
           {% for item in dataout %}
-            {{ item['hodnota'] }},
+            {{ item[0] }},
           {% endfor %}
       ]
           }
@@ -61,7 +61,7 @@
       // get bar chart canvas
       var mychart = document.getElementById("chart").getContext("2d");
       steps = 10
-      max = 10000000000
+      max = 900
       //{{ max }}
       // draw bar chart
       var LineChartDemo = new Chart(mychart).Line(barData,
