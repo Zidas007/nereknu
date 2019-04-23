@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+
+    <div>
+        <h1>{{data.nadpis}}</h1>
+    </div>
+    <div>
+        <h2>{{data.Nazevsloupce}}</h2>
+    <table border="black">
+        <th>
+        <td>
+        {{ data['nadpis'] }}
+    </td>
+        </th>
+        <tr>
+            {% for prvek in data['data'] %}
+            <td>{{prvek}}</td>
+        {% endfor %}
+        </tr>
+        <tr>
+            {% for prvek in data['cas'] %}
+            <td>{{prvek}}</td>
+        {% endfor %}
+        </tr>
+
+    </table>
+    </div>
+
+</body>
+</html>
